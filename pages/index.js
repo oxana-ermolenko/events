@@ -1,8 +1,12 @@
 
+import Featured from 'components/home/featured';
+import Shows from 'components/home/shows';
+
 const Home = () => {
   return (
     <>
-        home
+        <Featured />
+        <Shows />
     </>
   )
 }
