@@ -60,7 +60,7 @@ const Shows = () => {
                             <Link href={`/shows/the_show_slug`}>
                                 <a className="event-box">
                                     <Image
-                                        src={`/images/venues/one.jpg`}
+                                        src={`/images/venues/two.jpg`}
                                         alt={`alt of pic`}
                                         width="1920"
                                         height="1080"
@@ -84,7 +84,7 @@ const Shows = () => {
                             <Link href={`/shows/the_show_slug`}>
                                 <a className="event-box">
                                     <Image
-                                        src={`/images/venues/one.jpg`}
+                                        src={`/images/venues/three.jpg`}
                                         alt={`alt of pic`}
                                         width="1920"
                                         height="1080"
