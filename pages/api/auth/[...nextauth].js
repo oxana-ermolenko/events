@@ -8,7 +8,7 @@ import { passwordCheck } from 'database/utils/tools';
 
 export default NextAuth({
     session:{
-        jwt:true
+        strategy: "jwt",
     },
     providers:[
         CredentialsProvider({
@@ -35,12 +35,12 @@ export default NextAuth({
         })
     ],
     callbacks:{
-        async jwt(token,user){
+        async jwt({token, user}){
             if(user?._id) token._id = user._id;
             if(user?.role) token.role = user.role;
             return token;
         },
-        async session(session,token){
+        async session({session, token}){
             if(token?._id) session.user._id = token._id;
             if(token?.role) session.user.role = token.role;
             return session;
