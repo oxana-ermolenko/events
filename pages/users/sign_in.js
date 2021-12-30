@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic';
-import { signIn, getSession } from 'next-auth/client';
+import { signIn, getSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useFormik } from 'formik'
@@ -12,7 +12,8 @@ import Button from '@material-ui/core/Button';
 
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { successDispatcher } from 'store/actions/notifications.action';
+import { errorDispatcher } from 'store/actions/notifications.action';
+import { signInUser } from 'store/actions/user.action';
 
 const SignIn = () => {
     const [formType,setFormType] = useState(false);
@@ -58,7 +59,8 @@ const SignIn = () => {
                 setLoading(false);
                 dispatch(errorDispatcher(result.error))
             } else {
-                console.log(result)
+                const session = await getSession();
+                dispatch(signInUser(session,router))
             }
         }
 
