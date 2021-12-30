@@ -56,7 +56,7 @@ const Shows = () => {
                         </div>
 
 
-                        <div className="col-lg-4 col-sm-6" key={`1`}>
+                        <div className="col-lg-4 col-sm-6" key={`2`}>
                             <Link href={`/shows/the_show_slug`}>
                                 <a className="event-box">
                                     <Image
@@ -80,7 +80,7 @@ const Shows = () => {
                         </div>
 
 
-                        <div className="col-lg-4 col-sm-6" key={`1`}>
+                        <div className="col-lg-4 col-sm-6" key={`3`}>
                             <Link href={`/shows/the_show_slug`}>
                                 <a className="event-box">
                                     <Image
