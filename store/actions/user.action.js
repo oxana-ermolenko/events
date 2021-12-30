@@ -76,3 +76,13 @@ export const registerUser = (values, data, router ) => {
         }
     }
 }
+
+export const userSignOut = (msg) => {
+    return async(dispatch)=>{
+        signOut({redirect:false});
+        dispatch(successDispatcher(msg));
+        dispatch({
+            type:type.SIGN_OUT
+        })
+    }
+}
