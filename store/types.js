@@ -1,3 +1,4 @@
+export const REGISTER = 'register';
 export const SIGN_IN = 'sign_in';
 /// notifications
 export const ERROR_GLOBAL = 'error_global';
