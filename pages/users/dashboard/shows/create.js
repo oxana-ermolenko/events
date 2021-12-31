@@ -4,7 +4,7 @@ import LayoutAdmin from "components/ui/layout.admin";
 import { useFormik } from "formik";
 import { errorHelper } from "helpers/functions";
 import { showValidation } from "helpers/validations";
-
+import UploadHandler from 'components/ui/image.upload';
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Divider from "@material-ui/core/Divider";
@@ -55,7 +55,8 @@ const CreatShowPage = () => {
     <LayoutAdmin title="Create Show">
       <form className="mt-3 event_form" onSubmit={formik.handleSubmit}>
         {/* IMAGE */}
-
+        <UploadHandler/>
+        <Divider className="mt-3 mb-3" />
         <div className="form-group">
           <TextField
             style={{ width: "100%" }}
