@@ -15,3 +15,18 @@ export const findUserById = async(id) => {
     if(!user) throw new Error('No user found');
     return user;
 }
+export const updateUser = async(_id, body) => {
+    try{
+        const user = await User.findOneAndUpdate(
+            {_id},
+            { "$set":body},
+            { new: true}
+        ).select({"password":0});
+
+        if(!user) throw new Error('No user was found');
+        return user
+    }catch(error){
+        throw new Error('Oop try again later')
+    }
+
+} 
