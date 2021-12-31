@@ -17,6 +17,13 @@ export const findUserById = async(id) => {
 }
 export const updateUser = async(_id, body) => {
     try{
+        if(body.email){
+            const user = await userExists(body.email);
+            if(user){
+                throw new Error('Email taken');
+            }
+        }
+
         const user = await User.findOneAndUpdate(
             {_id},
             { "$set":body},
@@ -26,7 +33,7 @@ export const updateUser = async(_id, body) => {
         if(!user) throw new Error('No user was found');
         return user
     }catch(error){
-        throw new Error('Oop try again later')
+        throw new error
     }
 
 } 
