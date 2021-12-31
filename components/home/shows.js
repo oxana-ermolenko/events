@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Button from '@material-ui/core/Button';
 
 
-const Shows = () => {
+const Shows = ({shows}) => {
     return(
         <>
             <section className="page-section">
