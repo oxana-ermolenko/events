@@ -43,3 +43,29 @@ export const removeById = async(id) =>{
         throw error
     }
 } 
+
+export const getBySlug = async(query) =>{
+    try{
+        const show = await Show.find({slug:query.slug}).exec();
+        if(show.length <= 0){
+            return
+        }
+        return show;
+    } catch(error){
+        throw error
+    }
+} 
+
+export const updateBySlug = async(slug,body) => {
+    try{
+        const show = await Show.findOneAndUpdate(
+            {slug:slug},
+            {"$set":body},
+            { new: true}
+        );
+        if(!show) throw new Error('No show found');
+        return show;
+    }catch(error){
+        throw error
+    }
+}
