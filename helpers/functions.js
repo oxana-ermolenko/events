@@ -21,5 +21,7 @@ export const showToast = (type,msg) => {
         default:
             return false
     }
-
+}
+export const toJson = (value) => {
+    return JSON.parse(JSON.stringify(value));
 }
