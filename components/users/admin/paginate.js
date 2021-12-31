@@ -1,7 +1,6 @@
 import { Table, Pagination, Modal, Button } from 'react-bootstrap';
 import { useRouter } from 'next/router'
 
-
 const PaginateBlock = ({
     shows,
     prev,
@@ -19,6 +18,10 @@ const PaginateBlock = ({
 
     const goToNextPage = (page) => {
         next(page)
+    }
+
+    const goToEdit = (slug) => {
+        router.push(`/users/dashboard/shows/${slug}`)
     }
 
     return(
@@ -39,11 +42,11 @@ const PaginateBlock = ({
                             <td>{show.date}</td>
                             <td
                                 className="action_btn remove_btn"
-                                onClick={()=>alert('remove')}
+                                onClick={() => handleModal(show._id)}
                             >Remove</td>
                             <td
                                 className="action_btn edit_btn"
-                                onClick={() => handleModal(show._id)}
+                                onClick={() => goToEdit(show.slug)}
                             >Edit</td>
                         </tr>
                     ))}
