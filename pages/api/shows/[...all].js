@@ -1,14 +1,10 @@
-
-   
 import nc from 'next-connect';
 import checkAuth from 'database/middleware/checkauth'
 import connectToDb from 'database/db';
-
-import { addShow } from 'database/services/show.service'
-
+import { checkRole } from 'database/utils/tools'
+import { addShow, paginateShows } from 'database/services/show.service'
 
 const handler = nc();
-
 
 handler.post(
     "/api/shows/add_show",
@@ -17,6 +13,10 @@ handler.post(
         try{
             await connectToDb();
             ///  permission
+            const permission = await checkRole(req,['createAny','shows']);
+            if(!permission){
+                return res.status(401).json({message:'Unauthorized'})
+            }
             const show = await addShow(req)
             res.status(200).json({show})
         }catch(error){
@@ -25,5 +25,19 @@ handler.post(
     }
 )
 
+handler.post(
+    "/api/shows/paginate",
+    async(req,res)=>{
+        try{
+            const page = req.body.page ?  req.body.page : 1;
+            const limit = req.body.limit ? req.body.limit : 5;
+
+            const shows = await paginateShows(page,limit);
+            res.status(200).json(shows);
+        } catch(error){
+            res.status(400).json({message:'Oops I did it again'})
+        }
+    }
+)
 
 export default handler;

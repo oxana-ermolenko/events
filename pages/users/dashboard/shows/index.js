@@ -1,17 +1,37 @@
+import { useState } from 'react';
 import LayoutAdmin from 'components/ui/layout.admin';
 import connectToDb from 'database/db';
 import { paginateShows } from 'database/services/show.service';
 import { toJson } from 'helpers/functions';
+import PaginateBlock from 'components/users/admin/paginate';
+import axios from 'axios';
 
-const  ShowsAdmin =(props) => {
+const  ShowsAdmin =({shows}) => {
+    const limit = 2;
 
-    console.log(props)
+    const [showsPag, setShowsPag] = useState(shows);
+    
+    const gotoPage = (page) => {
+        getShows({page:page,limit})
+    }
 
-
+    const getShows = (values) => {
+        axios.post('/api/shows/paginate',values)
+        .then( response => {
+            console.log(response)
+        }).catch(error=>{
+            console.log(error)
+        })
+    }
     return(
         <LayoutAdmin title="Shows">
-            hello
-
+            <div className="shows_table">
+                <PaginateBlock 
+                    shows={showsPag}
+                    prev={(page)=> gotoPage(page)}
+                    next={(page)=> gotoPage(page)}
+                />
+            </div>
         </LayoutAdmin>
     )
 }
@@ -21,17 +41,18 @@ export const getServerSideProps = async() => {
     const shows = await paginateShows(1,2);
 
     if(!shows) {
-        return { notFound: true}
+        return {
+            props:{
+                shows:[]
+            }
+        }
     }
 
     return {
         props:{
-            show: toJson(shows)
+            shows: toJson(shows)
         }
     }
-
-
 }
-
 
 export default ShowsAdmin;
