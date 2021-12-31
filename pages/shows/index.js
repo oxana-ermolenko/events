@@ -6,9 +6,11 @@ import connectToDb from 'database/db';
 import { getAllShows } from 'database/services/show.service'
 import { toJson } from 'helpers/functions';
 import Card from 'components/ui/card'
+import Button from '@material-ui/core/Button';
 
 
 const ShowsPage = (props) => {
+    const [ noMore, setNoMore] = useState(false);
     const [shows,setShow] = useState(props.shows)
 
     const breakpointColumnsObj = {
@@ -18,6 +20,24 @@ const ShowsPage = (props) => {
         500: 1
     };
 
+    const loadMorePosts = () => {
+        const skip = shows.length;
+
+        axios.get(`/api/shows/getAll?limit=3&skip=${skip}`)
+        .then( response => {
+            const newState = [
+                ...shows,
+                ...response.data.shows
+            ];
+            setShows(newState);
+            if(response.data.shows.length <= 0){
+                setNoMore(true)
+            }
+
+        }).catch(error => {
+            console.log(error)
+        })
+    }
 
     return(
         <div className="container page_container">
@@ -30,6 +50,15 @@ const ShowsPage = (props) => {
                    <Card show={show} key={show._id}/>
                 ))}
             </Masonry>
+            { !noMore && (
+                <Button 
+                variant="contained"
+                onClick={loadMorePosts}
+                >
+                Load more
+                </Button>
+            )}
+
         </div>
     )
 
