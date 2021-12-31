@@ -5,7 +5,11 @@ import { useRouter } from 'next/router'
 const PaginateBlock = ({
     shows,
     prev,
-    next
+    next,
+    removeModal,
+    handleClose,
+    handleModal,
+    handleRemove
 }) => {
     const router = useRouter();
 
@@ -39,7 +43,7 @@ const PaginateBlock = ({
                             >Remove</td>
                             <td
                                 className="action_btn edit_btn"
-                                onClick={()=>alert('go to edit')}
+                                onClick={() => handleModal(show._id)}
                             >Edit</td>
                         </tr>
                     ))}
@@ -68,6 +72,26 @@ const PaginateBlock = ({
 
 
             </Pagination>
+            <Modal show={removeModal} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Are you really sure ?</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    There is no going back
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary"
+                        onClick={handleClose}
+                    >
+                        Opp, close this now !!
+                    </Button>
+                    <Button variant="danger"
+                        onClick={()=> handleRemove()}
+                    >
+                        Delete it
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         </>
     )
 }
