@@ -6,7 +6,9 @@ module.exports = (phase,{ defaultConfig }) => {
             env:{
                 DB_USER:'okyska',
                 DB_PASS:'2jMwtFkN3u6i7hMj',
-                DB_NAME:'testing'
+                DB_NAME:'testing',
+                EMAIL_USER:'okyska@gmail.com',
+                EMAIL_PASS:'ocyswkkmjujvlhvr'
             }
         }
     }
