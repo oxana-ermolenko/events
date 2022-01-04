@@ -1,11 +1,14 @@
 {
   "name": "procat",
   "private": true,
+  "engines": {
+    "node": "16.11.1"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "NODE_ENV=production node server.js",
-    "lint": "next lint"
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
     "@auth0/auth0-spa-js": "^1.19.3",
