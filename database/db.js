@@ -1,4 +1,6 @@
 import mongoose from 'mongoose';
+import getConfig from 'next/config';
+const {publicRuntimeConfig} = getConfig();
 
 export default async function connectToDb(){
     if(mongoose.connection.readyState >= 1) return;

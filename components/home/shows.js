@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Button from '@material-ui/core/Button';
 
 
-const Shows = () => {
+const Shows = ({shows}) => {
     return(
         <>
             <section className="page-section">
@@ -32,78 +32,30 @@ const Shows = () => {
                 <div className="container-fluid p-0">
                     <div className="row g-0">
 
-                        <div className="col-lg-4 col-sm-6" key={`1`}>
-                            <Link href={`/shows/the_show_slug`}>
-                                <a className="event-box">
-                                    <Image
-                                        src={`/images/venues/one.jpg`}
-                                        alt={`alt of pic`}
-                                        width="1920"
-                                        height="1080"
-                                        layout="responsive"
-                                        className="img-fluid"
-                                    />
-                                    <div className="event-box-caption">
-                                        <div className="project-category text-white-50">
-                                            12-15-2021
+                        { shows.map( show => (
+                            <div className="col-lg-4 col-sm-6" key={show._id}>
+                                <Link href={`/shows/${show.slug}`}>
+                                    <a className="event-box">
+                                        <Image
+                                            src={`/images/venues/${show.image}`}
+                                            alt={show.title}
+                                            width="1920"
+                                            height="1080"
+                                            layout="responsive"
+                                            className="img-fluid"
+                                        />
+                                        <div className="event-box-caption">
+                                            <div className="project-category text-white-50">
+                                                {show.date}
+                                            </div>
+                                            <div className="project-name">
+                                               {show.venue}
+                                            </div>
                                         </div>
-                                        <div className="project-name">
-                                            Bob's tavern
-                                        </div>
-                                    </div>
-                                </a>
-                            </Link>
-                        </div>
-
-
-                        <div className="col-lg-4 col-sm-6" key={`2`}>
-                            <Link href={`/shows/the_show_slug`}>
-                                <a className="event-box">
-                                    <Image
-                                        src={`/images/venues/two.jpg`}
-                                        alt={`alt of pic`}
-                                        width="1920"
-                                        height="1080"
-                                        layout="responsive"
-                                        className="img-fluid"
-                                    />
-                                    <div className="event-box-caption">
-                                        <div className="project-category text-white-50">
-                                            12-15-2021
-                                        </div>
-                                        <div className="project-name">
-                                            Bob's tavern
-                                        </div>
-                                    </div>
-                                </a>
-                            </Link>
-                        </div>
-
-
-                        <div className="col-lg-4 col-sm-6" key={`3`}>
-                            <Link href={`/shows/the_show_slug`}>
-                                <a className="event-box">
-                                    <Image
-                                        src={`/images/venues/three.jpg`}
-                                        alt={`alt of pic`}
-                                        width="1920"
-                                        height="1080"
-                                        layout="responsive"
-                                        className="img-fluid"
-                                    />
-                                    <div className="event-box-caption">
-                                        <div className="project-category text-white-50">
-                                            12-15-2021
-                                        </div>
-                                        <div className="project-name">
-                                            Bob's tavern
-                                        </div>
-                                    </div>
-                                </a>
-                            </Link>
-                        </div>
-
-
+                                    </a>
+                                </Link>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>
