@@ -1,5 +1,4 @@
 import nc from 'next-connect';
-import connectToDb from 'database/db'
 import connectToDb from 'database/db';
 import {contactEmail} from 'database/services/email.service';
 

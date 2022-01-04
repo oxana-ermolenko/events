@@ -16,6 +16,7 @@ const CardComponent = ({show}) => {
                     layout="responsive"
                     width="1920"
                     height="1080"
+                    alt="show"
                 />
 
                 <CardContent>
@@ -24,7 +25,7 @@ const CardComponent = ({show}) => {
                 </CardContent>
 
                 <CardActions>
-                    <Link href={`/shows/${show.slug}`}>
+                    <Link href={`/shows/${show.slug}`} passHref>
                         <Button
                             variant="contained"
                             color="primary"

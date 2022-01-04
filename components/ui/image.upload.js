@@ -3,6 +3,7 @@ import React,{ useEffect, useState, forwardRef, useImperativeHandle } from 'reac
 
 
 const UploadHandler = forwardRef((props,ref) => {
+    
     const imageInputRef = React.useRef();
     const [createObjectURL,setCreateObjectURL] = useState(null);
 
@@ -43,7 +44,7 @@ const UploadHandler = forwardRef((props,ref) => {
 
     return(
         <div className="file-uploader">
-            <img src={createObjectURL}/>
+            <image src={createObjectURL} alt="object"/>
             <div className="form-group">
                 <input
                     type="file"
